@@ -1,8 +1,6 @@
-<div class="pagination">
-  <div class="past-page">
-    <?php previous_posts_link( 'newer' ); // Display a link to  newer posts, if there are any, with the text 'newer' ?>
-  </div>
-  <div class="next-page">
-    <?php next_posts_link( 'older' ); // Display a link to  older posts, if there are any, with the text 'older' ?>
-  </div>
-</div>
+<nav>
+  <?php previous_posts_link( 'précédent' ); 
+  /* Affiche un lien vers le billet précédent avec le label 'précédent' */ ?>
+  <?php next_posts_link( 'suivant' ); 
+  /* Affiche un lien vers le billet suivant avec le label 'suivant' */ ?>
+</nav>

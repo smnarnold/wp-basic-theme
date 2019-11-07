@@ -1,13 +1,14 @@
 <?php
 /**
- * Modèle pour la page 404
+ * Modèle de la page 404
  */
 
-// Cette fonction appel le fichier header.php
+// Appel le fichier header.php
 get_header(); ?>
 
-  <article class="post error">
-    <h1 class="404">Zut de flûte</h1>
-  </article>
+<article>
+  <h2>Oh oh, désolé la requête demandé n'a pas été trouvée</h2>
+	<img src="https://media.giphy.com/media/3HLMNi9U0yb4CDldVO/giphy.gif" alt="Non trouvée">
+</article>
 
 <?php get_footer(); 

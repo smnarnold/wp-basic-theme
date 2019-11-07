@@ -4,16 +4,16 @@
 	/*-----------------------------------------------------------------------------------*/
 ?>
 
-</main><!-- / Ferme la zone de contenu principal -->
+</main><!-- Fermeture de la zone de contenu principale -->
 
-<footer class="site-footer">
+<footer>
 	<p>Développement web - Collège Montmorency - 2019</p>
 </footer>
 
 <?php wp_footer(); 
-// Cette fonction permet l'insérer de fichiers .js et .css par vos plugiciels (plugins). 
-// Si vous enlever cette fonction, vous désactiverez du même coups tous vos plugins 🤷. 
-// Vous pouvez toujorus la déplacer, mais je vous conseil de la garder
+/* Cette fonction permet l'insérer de fichiers .js et .css par vos plugiciels (plugins). 
+	 Si vous enlever cette fonction, vous désactiverez du même coups tous vos plugins 🤷. 
+	 Vous pouvez toujorus la déplacer, mais je vous conseil de la garder */
 ?>
 
 </body>

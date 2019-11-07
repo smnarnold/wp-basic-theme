@@ -1,7 +1,7 @@
 <?php
 	/*-----------------------------------------------------------------------------------*/
 	/* Ce fichier est présent sur chaque page
-	/* Vous pouvez y ajouter des fonction personnalisés au besoin
+	/* Vous pouvez y ajouter des fonction personnalisées au besoin
 	/*-----------------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------------*/
@@ -43,10 +43,10 @@ add_action( 'widgets_init', 'montmorency_register_sidebars' );
 /*-----------------------------------------------------------------------------------*/
 /* Ajoute les styles et scripts
 /*-----------------------------------------------------------------------------------*/
-function montmorency_scripts()  { 
+function basic_style_and_js()  { 
 	// ajoute d'une feuille de style
-	wp_enqueue_style('main.css', get_stylesheet_directory_uri() . '/main.css');
+	wp_enqueue_style('style.css', get_stylesheet_directory_uri() . '/style.css');
 	// ajoute d'un fichier javascript
 	wp_enqueue_script( 'main', get_template_directory_uri() . '/main.js', array(), false, true );
 }
-add_action( 'wp_enqueue_scripts', 'montmorency_scripts' ); // Indique que le script doit être appelé
+add_action( 'wp_enqueue_scripts', 'basic_style_and_js' ); // Indique que le script doit être appelé

@@ -1,37 +1,35 @@
 <?php
 /**
- * The template for displaying any single page.
+ * Modèle permettant d'afficher une page.
  */
 
-// Cette fonction appel le fichier header.php
+// Appel le fichier header.php
 get_header(); 
 
-// Est-ce que nous avons des pages/billets à afficher ?
+// Est-ce que nous avons des pages à afficher ?
 if ( have_posts() ) : 
-	// Si oui, bouclons au travers
+	// Si oui, bouclons au travers les pages (logiquement, il n'y en aura qu'une)
 	while ( have_posts() ) : the_post(); 
 ?>
 
-					<article class="post">
-					
-						<h1 class="title"><?php the_title(); // Display the title of the page ?></h1>
-						
-						<div class="the-content">
-							<?php the_content(); 
-							// This call the main content of the page, the stuff in the main text box while composing.
-							// This will wrap everything in p tags
-							?>
+	<article>
+		<h2>
+			<?php the_title(); 
+			/* Titre de la page */ ?>
+		</h2>
+
+		<?php the_content(); 
+		/* Affiche le contenu principal de la page */ ?>
 							
-							<?php wp_link_pages(); // This will display pagination links, if applicable to the page ?>
-						</div><!-- the-content -->
-						
-					</article>
+		<?php wp_link_pages(); 
+		/* Pagination, si applicable */ ?>			
+	</article>
+<?php endwhile; // Fermeture de la boucle ?>
 
-				<?php endwhile; // OK, let's stop the page loop once we've displayed it ?>
+<?php else : // Si aucune page correspondante n'a été trouvée ?>
+	<h2>Oh oh, la page recherchée est disparue</h2>
+	<img src="https://i.giphy.com/media/3o8doR2qGIXQDGCVoY/giphy.webp" alt="Page disparue">
+<?php endif; 
 
-			<?php else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) ?>
-				<article class="post error">
-					<h1 class="404">Nothing posted yet</h1>
-				</article>
-			<?php endif; // OK, I think that takes care of both scenarios (having a page or not having a page to show) ?>
-<?php get_footer(); // This fxn gets the footer.php file and renders it ?>
+// Appel le fichier footer.php
+get_footer(); ?>

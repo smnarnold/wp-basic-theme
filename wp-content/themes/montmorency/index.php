@@ -1,21 +1,21 @@
 <?php
 /**
- * Modèle de la page par défaut
- * Ce modèle sera utilisé si Wordpress ne sait pas quel modèle utiliser pour une page
+ * Modèle générique au cas où Wordpress ne trouve pas un modèle
+ * À utiliser comme fallback seulement.
  */
 
 // Cette fonction appel le fichier header.php
 get_header(); 
 
-// Est-ce que nous avons des billets qui correspondent à notre requête ?
+// Est-ce que nous avons des pages/billets qui correspondent à notre requête ?
 // Dans le cas de la page d'accueil, les billets les plus récents serons affichés
 if ( have_posts() ) : 
 	// Si oui, bouclons au travers pour tous les afficher
 	while ( have_posts() ) : the_post(); 
 ?>
 
-	<article class="post">
-		<?php the_post_thumbnail('large'); // Lien vers la vignette ?>
+	<article>
+		<?php the_post_thumbnail('large'); // Vignette large du billet ?>
 
 		<h2>
 			<a href="<?php the_permalink(); // Lien du billet ?>">
@@ -23,38 +23,36 @@ if ( have_posts() ) :
 			</a>
 		</h2>
 
-		<div class="post-meta">
-			<?php 
-				the_time('d/m/Y'); // Date de publication
-				if( comments_open() ) : // Indique le nombre de commentaire ainsi qu'un lien pour les voir
-					comments_popup_link( __( 'Commentaire', 'break' ), __( '1 Commentaire', 'break' ), __( '% Commentaires', 'break' ) ); 
-				?>
-			<?php endif; ?>
-		</div>
-		
-		<div class="the-content">
-			<?php the_content( 'Continue...' ); 
-			// This call the main content of the post, the stuff in the main text box while composing.
-			// This will wrap everything in p tags and show a link as 'Continue...' where/if the
-			// author inserted a <!-- more --> link in the post body
+		<?php 
+			the_time('d/m/Y'); // Date de publication
+
+			if( comments_open() ) : // Si les commentaire son permis
+				// Indique le nombre de commentaires, ainsi qu'un lien pour les voir
+				comments_popup_link( __( 'Commentaire', 'break' ), __( '1 Commentaire', 'break' ), __( '% Commentaires', 'break' ) ); 
 			?>
-			
-			<?php wp_link_pages(); // This will display pagination links, if applicable to the post ?>
+		<?php endif; ?>
+
+		<?php the_content('Continue...'); 
+		/* Affiche le contenu principal de la page 
+			 'Continue...' sera affiché sous forme de lien pour tronquer le contenu du billet/page 
+			 si l'admin à inscrit un commentaire <!-- more --> dans son contenu.
+		*/ ?>
+							
+		<?php wp_link_pages(); 
+		/* Pagination, si applicable */ ?>
 
 		<?php get_template_part( 'partials/metas' ); ?>
 	</article>
 
-<?php endwhile; // OK, let's stop the posts loop once we've exhausted our query/number of posts ?>
+<?php endwhile; // Fermeture de la boucle ?>
 	
-	<!-- pagintation -->
-	<?php get_template_part( 'partials/pagination' ); ?>
+<?php get_template_part( 'partials/pagination' ); 
+/* Pagination vers le billet précédent et suivant */?>
 
-<?php else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) ?>
-	<article class="post error">
-		<h1 class="404">Il n'y a aucun billet</h1>
-	</article>
-<?php endif; // OK, I think that takes care of both scenarios (having posts or not having any posts) 
+<?php else : // Si aucune page/billet correspondant n'a été trouvé ?>
+	<h2>Oh oh, désolé la requête demandé n'a pas été trouvée</h2>
+	<img src="https://media.giphy.com/media/3HLMNi9U0yb4CDldVO/giphy.gif" alt="Non trouvée">
+<?php endif; 
 
-// Cette fonction appel le fichier footer.php
-get_footer(); 
-?>
+// Appel le fichier footer.php
+get_footer(); ?>

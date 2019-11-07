@@ -1,8 +1,7 @@
 <div class="meta">
-  <div class="category">
-    <?php echo get_the_category_list(); // Display the categories this post belongs to, as links ?>
-  </div>
-  <div class="tags">
-    <?php echo get_the_tag_list( '| &nbsp;', '&nbsp;' ); // Display the tags this post has, as links separated by spaces and pipes ?>
-  </div>
+  <?php echo get_the_category_list(); 
+  /* Affiche sous forme de liens les catégories auquel ce billet appartient */ ?>
+
+  <?php echo get_the_tag_list( '| &nbsp;', '&nbsp;' ); 
+  /* Affiche les tags associés à ce billet séparés par des espaces (&nbsp;) et un | */ ?>
 </div>

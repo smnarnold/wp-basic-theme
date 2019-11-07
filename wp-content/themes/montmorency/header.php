@@ -10,46 +10,44 @@
 <meta name="viewport" content="width=device-width" />
 <title>
 	<?php bloginfo('name'); // Affiche le nom du blog à partir des paramètres ?> | 
-	<?php is_front_page() ? bloginfo('description') : wp_title(''); // si nous sommes sur la page d'accueil, affichez la description, à partir des paramètres du site - sinon, affichez le titre de l'article ou de la page. ?>
+	<?php is_front_page() ? bloginfo('description') : wp_title(''); // si nous sommes sur la page d'accueil, affichez la description à partir des paramètres du site - sinon, affichez le titre du billet ou de la page. ?>
 </title>
 <?php 
 	// Tous les .css et .js sont chargés dans le fichier functions.php
 ?>
 
 <?php wp_head(); 
-// Cette fonction permet à Wordpress et aux plugins d'instancier des fichier css et js dans le <head>
-// Supprimer cette fonction briserait des plugins et fonctionnalité de Wordpress. 
-// À la limite vous pouvez la déplacer, mais gardez là.
+/* Cette fonction permet à Wordpress et aux plugins d'instancier des fichier css et js dans le <head>
+	 Supprimer cette fonction briserait des plugins et fonctionnalité de Wordpress. 
+	 À la limite vous pouvez la déplacer, mais gardez là. */
 ?>
 </head>
 
 <body 
 	<?php body_class(); 
-	// Applique une classe contextuel sur votre <body>
-	// ex: sur votre page d'accueil vous aurez la classe "home"
-	// sur un billet (post), "single postid-{ID}"
-	// etc.
+	/* Applique une classe contextuel sur le body
+		 ex: sur la page d'accueil vous aurez la classe "home"
+		 sur un billet (post), "single postid-{ID}"
+		 etc. */
 	?>
 >
 
 <header>
-	<h1 class="site-title">
+	<h1>
 		<a href="<?php echo esc_url( home_url( '/' ) ); // Lien vers la page d'accueil ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); // Title it with the blog name ?>" rel="home"><?php bloginfo( 'name' ); // Affiche le nom du site ?></a>
 	</h1>
 
-	<nav class="main-nav">
+	<nav>
 		<?php 
 			// Affiche le menu défini dans Appearance > Menus dans l'admin Wordpress
 			wp_nav_menu( array( 'theme_location' => 'main-nav' ) );
 		?>
 	</nav>
 
-	<div>
-		<?php 
-			// Affiche la description de site se trouvant dans "General Settings" dans l'admin Wordpress
-			bloginfo( 'description' ); 
-		?>
-	</div>	
+	<?php 
+		// Affiche la description de site se trouvant dans "General Settings" dans l'admin Wordpress
+		bloginfo( 'description' ); 
+	?>
 </header>
 
-<main class="main-fluid"><!-- Débute le contenu principal de notre site -->
+<main><!-- Débute le contenu principal de notre site -->

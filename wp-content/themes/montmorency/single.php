@@ -1,47 +1,60 @@
 <?php
 /**
- * The template for displaying any single post.
+ * Modèle permettant d'afficher un billet (Post).
  */
 
-// Cette fonction appel le fichier header.php
+// Appel le fichier header.php
 get_header(); 
 
-// Est-ce que nous avons des billets à afficher ?
+// Avons-nous des billets à afficher ?
 if ( have_posts() ) : 
-	// Si oui, bouclons au travers de ces billets (il n'y en aura logiquement qu'un)
+	// Si oui, bouclons au travers les billets (logiquement, il n'y en aura qu'un)
 	while ( have_posts() ) : the_post(); 
 ?>
 
-			<article class="post">
-			
-				<h1 class="title">
-					<?php the_title(); ?>
-				</h1>
+	<article>
+		<h2>
+			<?php the_title(); 
+			/* Titre du billet */ ?>
+		</h2>
 
-				<div class="post-meta">
-					<?php the_time('d.m.Y'); // Display the time it was published ?>
-					<?php the_author(); //  post author ?>
-				</div>
-				
-				<?php the_content(); 
-				// This call the main content of the post, the stuff in the main text box while composing.
-				// This will wrap everything in p tags
-				?>
-				
-				<?php wp_link_pages(); // This will display pagination links, if applicable to the post ?>
-				<?php get_template_part( 'partials/metas' ); ?>
-			</article>
-		<?php endwhile; // OK, let's stop the post loop once we've displayed it ?>
+		<?php if( get_field('imdb_url') ): ?>
+			<a href="<?php the_field('imdb_url'); ?>">IMDB</a>
+		<?php endif; ?>
+
+		<div class="post-meta">
+			<?php the_time('d.m.Y');
+			/* Indique quand le billet fut publié
+				 https://codex.wordpress.org/fr:Modifier_Date_et_Heure */ ?>
+			<?php the_author();
+			/* Affiche le username de l'auteur du billet */ ?>
+		</div>
 		
-		<?php
-			// If comments are open or we have at least one comment, load up the default comment template provided by Wordpress
-			if ( comments_open() || '0' != get_comments_number() )
-				comments_template( '', true );
-		?>
+		<?php the_content(); 
+		/* Affiche le contenu principal du billet */ ?>
+		
+		<?php wp_link_pages(); 
+		/* Pagination, si applicable */ ?>
 
-	<?php else : // Well, if there are no posts to display and loop through, let's apologize to the reader (also your 404 error) ?>
-		<article class="post error">
-			<h1 class="404">Nothing has been posted like that yet</h1>
-		</article>
-	<?php endif; // OK, I think that takes care of both scenarios (having a post or not having a post to show) ?>
-<?php get_footer(); // This fxn gets the footer.php file and renders it ?>
+		<?php get_template_part( 'partials/metas' ); 
+		// Appel le fichier metas.php dans le dossier partials ?>
+	</article>
+<?php endwhile; // Fermeture de la boucle ?>
+		
+<?php
+	/* comments_open() valide si nous authorisons les commentaires 
+		 '0' != get_comments_number() valide si il y a au moins un commentaire
+		 Si l'une des précédentes conditions est vraie, nous affichons le template de commentaires par défaut de Wordpress
+	*/ 
+	if ( comments_open() || '0' != get_comments_number() ) {
+		comments_template( '', true );
+	}
+?>
+
+<?php else : // Si aucun billet (Post) correspondant n'a été trouvé ?>
+	<h2>Oh oh, aucun billet n'a été trouvé</h2>
+	<img src="https://media.giphy.com/media/ZYX2ZNBPHmlmfc7Fcj/giphy.gif" alt="Aucun billet trouvé">
+<?php endif; 
+
+// Appel le fichier footer.php
+get_footer(); ?>
