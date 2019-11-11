@@ -42,12 +42,16 @@ if ( have_posts() ) :
 		/* Pagination, si applicable */ ?>
 
 		<?php get_template_part( 'partials/metas' ); ?>
+
 	</article>
 
-<?php endwhile; // Fermeture de la boucle ?>
+<?php endwhile; wp_reset_postdata();// Fermeture de la boucle ?>
+
+<?php get_template_part( 'partials/superheros-grid' ); 
+		// Appel le fichier metas.php dans le dossier partials ?>
 	
 <?php get_template_part( 'partials/pagination' ); 
-/* Pagination vers le billet précédent et suivant */?>
+/* Pagination vers le billet précédent et suivant */ ?>
 
 <?php else : // Si aucune page/billet correspondant n'a été trouvé ?>
 	<h2>Oh oh, désolé la requête demandé n'a pas été trouvée</h2>

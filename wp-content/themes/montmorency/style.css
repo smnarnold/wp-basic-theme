@@ -5,3 +5,38 @@ Author URI: https://smnarnold.com
 Description: Thème de base pour apprendre à faire un site Wordpress.
 Version: 1.0
 -------------------------------------------------------------- */
+body {
+  margin: 0;
+}
+
+.avengers-grid {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #f1dfc7;
+  font-family: geneva;
+  font-size: 16px;
+  color: #303539;
+  width: 100%;
+}
+
+.hero { flex-basis: 100%; }
+
+.hero > * { padding: 20px; }
+
+.picture img { 
+  width: 100%; 
+  height: auto;
+}
+
+.quote {
+  font-size: 2em;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .hero { flex-basis: 50%; }
+}
+
+@media (min-width: 1000px) {
+  .hero { flex-basis: 25%; }
+}
