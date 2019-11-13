@@ -1,45 +1,36 @@
 <?php
 	/*-----------------------------------------------------------------------------------*/
 	/* Ce fichier est présent sur chaque page
-	/* Vous pouvez y ajouter des fonction personnalisées au besoin
+	/* Vous pouvez y ajouter des fonctions personnalisées au besoin
 	/*-----------------------------------------------------------------------------------*/
 
 /* Ajoute le support des images de vignettes dans les billets (posts) */
 add_theme_support( 'post-thumbnails' );
 
-/* Défini le menu princiapl de Wordpress */
-register_nav_menus( 
-	array(
-		'main-nav'	=>	__( 'Menu principal', 'montmorency' ), // Déclare le menu princiapl
-		// Copiez et collez la ligne ci-dessus juste ici si vous voulez créer un autre menu, 
-		// Vous n'avez qu'à changer le nom 'primary'
-	)
-);
+register_nav_menus(array(
+	'main-menu'	=>	__( 'Menu principal', 'Menu principal du site' ), 
+	/* Déclare le menu principal
+			Dupliquer la ligne ci-dessus si vous désirez créer un autre menu, 
+			Vous n'avez qu'à changer le nom 'main-menu' */
+));
 
-/* Active la barre latérale de Wordpress */
-function montmorency_register_sidebars() {
-	register_sidebar(array(				// Start a series of sidebars to register
-		'id' => 'sidebar', 					// Make an ID
-		'name' => 'Sidebar',				// Name it
-		'description' => 'Take it on the side...', // Dumb description for the admin side
-		'before_widget' => '<div>',	// What to display before each widget
-		'after_widget' => '</div>',	// What to display following each widget
-		'before_title' => '<h3 class="side-title">',	// What to display before each widget's title
-		'after_title' => '</h3>',		// What to display following each widget's title
-		'empty_title'=> '',					// What to display in the case of no title defined for a widget
-		// Copy and paste the lines above right here if you want to make another sidebar, 
-		// just change the values of id and name to another word/name
+function create_sidebars() {
+	register_sidebar(array(	
+		'name' => __( 'Barre laterale principale', 'Barre latérale principale du site' ),
 	));
+	/* Déclare la barre latérale principale.
+		 Dupliquer le bloc ci-dessus si vous désirez créer une autre barre latérale. 
+		 Vous n'avez qu'à changer le nom 'Barre laterale principale' et la description 'Barre latérale principale du site' */
 } 
 // adding sidebars to Wordpress (these are created in functions.php)
-add_action( 'widgets_init', 'montmorency_register_sidebars' );
+add_action( 'widgets_init', 'create_sidebars' );
 
 /* Ajoute les styles et scripts */
 function basic_style_and_js()  { 
 	/* ajoute d'une feuille de style */
-	wp_enqueue_style('style.css', get_stylesheet_directory_uri() . '/style.css');
-	//* ajoute d'un fichier javascript */
-	wp_enqueue_script( 'main', get_template_directory_uri() . '/main.js', array(), false, true );
+	wp_enqueue_style( 'style.css', get_stylesheet_directory_uri() . '/style.css' );
+	/* ajoute d'un fichier javascript */
+	wp_enqueue_script( 'main.js', get_template_directory_uri() . '/main.js', array(), false, true );
 }
 
 /* Indique que le script doit être appelé */

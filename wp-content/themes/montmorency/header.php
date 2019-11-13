@@ -48,6 +48,11 @@
 		// Affiche la description de site se trouvant dans "General Settings" dans l'admin Wordpress
 		bloginfo( 'description' ); 
 	?>
+
+<?php 
+			// Affiche le menu défini dans Appearance > Menus dans l'admin Wordpress
+			wp_nav_menu( array( 'theme_location' => 'patate-nav' ) );
+		?>
 </header>
 
 <main><!-- Débute le contenu principal de notre site -->

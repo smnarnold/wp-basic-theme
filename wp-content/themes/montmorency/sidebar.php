@@ -4,11 +4,11 @@
  *  (N'affiche que si spécifié dans l'admin)
 */
 
-if ( ! dynamic_sidebar( 'sidebar' ) ) : 
+if ( ! dynamic_sidebar( 'barre-laterale' ) ) : 
 	/* Si l'éditeur n'a rien mit dans la barre latérale dans l'admin, affichons le module suivant */ ?>
 	<aside>
 		<h3>
-			<?php _e( 'Archives', 'naked' ); 
+			<?php _e( 'Archives', 'demo' ); 
 			/* Archives - Titre traduisable */  ?>
 		</h3>
 		<ul>
