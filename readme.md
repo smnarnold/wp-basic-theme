@@ -1,3 +1,3 @@
-#Basic Theme
+# Basic Theme
 
-Theme de base pour apprendre Wordpress
+Theme de base pour apprendre Wordpress.
